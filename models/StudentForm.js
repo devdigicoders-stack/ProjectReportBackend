@@ -41,6 +41,7 @@ const StudentFormSchema = new mongoose.Schema(
     currentStep: { type: Number, default: 1 },
     isPrint: { type: Number, default: 0 },
     pdfSendStudent: { type: Boolean, default: false },
+    isRefunded: { type: Boolean, default: false },
     status: { 
       type: String, 
       enum: ["draft", "new", "accept", "reject", "requestForPrint", "isSendToPrint", "printed", "isSendToStudent"], 
