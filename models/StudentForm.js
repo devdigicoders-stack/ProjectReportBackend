@@ -43,7 +43,7 @@ const StudentFormSchema = new mongoose.Schema(
     pdfSendStudent: { type: Boolean, default: false },
     status: { 
       type: String, 
-      enum: ["draft", "new", "accept", "reject", "isSendToPrint", "isSendToStudent"], 
+      enum: ["draft", "new", "accept", "reject", "requestForPrint", "isSendToPrint", "printed", "isSendToStudent"], 
       default: "draft" 
     },
     submittedAt: { type: Date },

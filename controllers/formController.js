@@ -297,7 +297,7 @@ export const updateStudentStatus = async (req, res) => {
 
     if (
       !status ||
-      !["new", "accept", "reject", "isSendToPrint", "isSendToStudent"].includes(
+      !["new", "accept", "reject", "requestForPrint", "isSendToPrint", "printed", "isSendToStudent"].includes(
         status
       )
     ) {
@@ -430,7 +430,9 @@ export const getDashboardCounts = async (req, res) => {
     const statuses = [
       "new",
       "accept",
+      "requestForPrint",
       "isSendToPrint",
+      "printed",
       "isSendToStudent",
       "reject",
     ];
