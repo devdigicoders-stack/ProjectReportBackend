@@ -293,7 +293,7 @@ export const updateStudent = async (req, res) => {
 export const updateStudentStatus = async (req, res) => {
   try {
     const { id } = req.params;
-    const { status, isRefunded } = req.body;
+    const { status, isRefunded, paymentDetails } = req.body;
 
     if (
       !status ||
@@ -310,6 +310,9 @@ export const updateStudentStatus = async (req, res) => {
     const updateFields = { status };
     if (isRefunded !== undefined) {
       updateFields.isRefunded = isRefunded;
+    }
+    if (paymentDetails !== undefined) {
+      updateFields.paymentDetails = paymentDetails;
     }
 
     const student = await StudentForm.findByIdAndUpdate(

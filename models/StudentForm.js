@@ -48,6 +48,12 @@ const StudentFormSchema = new mongoose.Schema(
       default: "draft" 
     },
     submittedAt: { type: Date },
+    paymentDetails: {
+      transactionId: { type: String },
+      amount: { type: Number },
+      status: { type: String },
+      paidAt: { type: Date }
+    },
   },
   { 
     timestamps: true,
