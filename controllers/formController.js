@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import StudentForm from "../models/StudentForm.js";
 
 // Create or update form step
@@ -315,11 +316,22 @@ export const updateStudentStatus = async (req, res) => {
       updateFields.paymentDetails = paymentDetails;
     }
 
-    const student = await StudentForm.findByIdAndUpdate(
-      id,
-      { $set: updateFields },
-      { new: true }
-    );
+    let student = null;
+    if (mongoose.isValidObjectId(id)) {
+      student = await StudentForm.findByIdAndUpdate(
+        id,
+        { $set: updateFields },
+        { new: true }
+      );
+    }
+
+    if (!student) {
+      student = await StudentForm.findOneAndUpdate(
+        { $or: [{ projectId: id }, { userId: id }] },
+        { $set: updateFields },
+        { new: true }
+      );
+    }
 
     if (!student) {
       return res.status(404).json({
